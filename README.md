@@ -37,10 +37,7 @@ Snippets of the code under [Politician_analysis.ipynb](./data-512-homework_2/Pol
 
 [request](https://requests.readthedocs.io/en/latest/api/#) : For calling the MediaWiki and ORES APIs
 
-# Usage
-
-Entire code for reproducing the results are present in the [Politician_analysis.ipynb](data-512-homework_2/Politician_analysis.ipynb) file.
-We just have to run the cells in order to produce the same results.
+Note: ChatGPT was used to for code generation help with syntax and improve code eficiency.
 
 ## Getting access token
 
@@ -51,6 +48,77 @@ In the data acquisition code, use your username and the Access Token you generat
 You can use jupyter to run this file locally or even google colab (needs access to google colab). One can use the `Run All Cells` or `Restart Kernel` and `Run All Cells` option of the jupyter notebook.
 
 Note: The data aquisition step where we use the ORES API to get the quality score for every article takes about 2-2.5 hours.
+
+# Usage
+
+Entire code for reproducing the results are present in the [Politician_analysis.ipynb](data-512-homework_2/Politician_analysis.ipynb) file.
+We just have to run the cells in order to produce the same results.
+
+## Intermediary files
+
+The results for the page info API calls were stored in a [articles_page_info.json](HCDS/data-512-homework_2/intermediary_files/articles_page_info.json) with the following schema:
+
+```
+{
+    "Abdul Baqi Turkistani": {
+        "pageid": 27428272,
+        "ns": 0,
+        "title": "Abdul Baqi Turkistani",
+        "contentmodel": "wikitext",
+        "pagelanguage": "en",
+        "pagelanguagehtmlcode": "en",
+        "pagelanguagedir": "ltr",
+        "touched": "2024-09-27T01:07:35Z",
+        "lastrevid": 1231655023,
+        "length": 1357,
+        "talkid": 27595416,
+        "fullurl": "https://en.wikipedia.org/wiki/Abdul_Baqi_Turkistani",
+        "editurl": "https://en.wikipedia.org/w/index.php?title=Abdul_Baqi_Turkistani&action=edit",
+        "canonicalurl": "https://en.wikipedia.org/wiki/Abdul_Baqi_Turkistani"
+    }
+}
+```
+
+The result from the ORES API call is stored in [articles_ores_scores.csv](HCDS/data-512-homework_2/intermediary_files/articles_ores_scores.csv). It has the following schema:
+
+| Column Name          | Data Type | Description                                                                  |
+| -------------------- | --------- | ---------------------------------------------------------------------------- |
+| `revision_id`        | Integer   | Unique identifier for the revision of the article.                           |
+| `quality_prediction` | String    | Predicted quality category of the article (e.g., Stub, Start, C, B, GA, FA). |
+| `Probability B`      | Float     | Probability that the article belongs to quality class B.                     |
+| `Probability C`      | Float     | Probability that the article belongs to quality class C.                     |
+| `Probability FA`     | Float     | Probability that the article belongs to quality class FA (Featured Article). |
+| `Probability GA`     | Float     | Probability that the article belongs to quality class GA (Good Article).     |
+| `Probability Start`  | Float     | Probability that the article belongs to quality class Start.                 |
+| `Probability Stub`   | Float     | Probability that the article belongs to quality class Stub.                  |
+
+## Result files
+
+[wp_countries-no_match.txt](HCDS/data-512-homework_2/result_files/wp_countries-no_match.txt): Contains the list of countries which have a mismatch, i.e. when we merge the wikipedia data and population data together these countries are not present is either.
+
+[wp_politicians_by_country.csv](HCDS/data-512-homework_2/result_files/wp_politicians_by_country.csv): The countries which have a match.
+
+_Feel free to use, modify, or contribute to this project while adhering to the MIT License._
+
+### Research Reflection:
+
+In this assignment, I gained valuable insights into the importance of combining domain knowledge with data analysis before embarking on a data science project. One key lesson learned is that the majority of data, especially on the internet, tends to have inherent biases. These biases can stem from various factors such as demographics, gender, or culture. Countries with lower literacy rates or limited internet access may also experience biases in data availability. Additionally, documentation and reproducibility are critical aspects of data science projects, carried over from previous lessons.
+
+**What biases did you expect to find in the data (before you started working with it), and why?**
+
+I expected to find biases related to regional representation, as smaller countries or regions with fewer internet users would likely have less content on Wikipedia but higher articles per capita. This assumption was confirmed as regions like Vermont and Alaska had disproportionately higher articles per capita due to their low population, while larger states like California and Arizona had lower articles per capita. Additionally, I discovered that non-native English-speaking regions tended to have fewer high-quality articles, suggesting a cultural-linguistic bias in the data.
+
+**What might your results suggest about (English) Wikipedia as a data source?**
+
+The results suggest that English Wikipedia, as a data source, is inherently biased due to its focus on English-language content. This creates a skewed view of the quality and coverage of topics, particularly for regions or communities where English is not the dominant language. Such biases can have implications for research or decision-making that rely on Wikipedia data, as it may not provide a fully accurate representation of global knowledge or perspectives.
+
+**Can you think of a realistic data science research situation where using these data (to train a model, perform a hypothesis-driven research, or make business decisions) might create biased or misleading results, due to the inherent gaps and limitations of the data?**
+
+In terms of real-world data science applications, using this dataset to train a model could lead to biased or misleading outcomes. For instance, NLP tools trained on biased data, like Wikipedia content, could amplify cultural and demographic biases. These limitations highlight the importance of supplementing datasets with diverse samples or retraining models to ensure more representative outcomes.
+
+In realistic data science research, using biased datasets like these to train models or conduct hypothesis-driven research can lead to misleading results. For instance, content moderation or NLP models that rely on internet-sourced data might exhibit the same biases. The example of GPT-3 generating biased content against particular religions, such as Islam, highlights the dangers of training models on datasets that reflect cultural or ideological biases. As the article "Is GPT-3 Islamophobic?" demonstrates, biases in data can lead to harmful outcomes, especially in tools with large-scale deployments.
+
+By reflecting on these biases and understanding how they influence data-driven decisions, it becomes clear that qualitative considerations are just as important as quantitative ones. Both must be carefully balanced to produce meaningful, accurate, and fair results in data science research.
 
 # Important considerations
 
