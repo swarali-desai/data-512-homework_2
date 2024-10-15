@@ -100,7 +100,7 @@ The result from the ORES API call is stored in [articles_ores_scores.csv](HCDS/d
 
 _Feel free to use, modify, or contribute to this project while adhering to the MIT License._
 
-### Research Reflection:
+# Research Reflection:
 
 In this assignment, I gained valuable insights into the importance of combining domain knowledge with data analysis before embarking on a data science project. One key lesson learned is that the majority of data, especially on the internet, tends to have inherent biases. These biases can stem from various factors such as demographics, gender, or culture. Countries with lower literacy rates or limited internet access may also experience biases in data availability. Additionally, documentation and reproducibility are critical aspects of data science projects, carried over from previous lessons.
 
