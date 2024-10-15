@@ -6,9 +6,9 @@
 
 The goal of this assignment is to explore the concept of bias in data using Wikipedia articles. This repository aims to perform an analysis of how the coverage of politicians on Wikipedia and the quality of articles about politicians varies among countries. Finally the notebook also generates a few tables which contain the following:
 
--   Top 10 countries by coverage: The 10 countries with the highest total articles per capita (in descending order) .
--   Bottom 10 countries by coverage: The 10 countries with the lowest total articles per capita (in ascending order) .
--   Top 10 countries by high quality: The 10 countries with the highest high quality articles per capita (in descending order) .
+-   Top 10 countries by coverage: The 10 countries with the highest total articles per capita (in descending order).
+-   Bottom 10 countries by coverage: The 10 countries with the lowest total articles per capita (in ascending order).
+-   Top 10 countries by high quality: The 10 countries with the highest high quality articles per capita (in descending order).
 -   Bottom 10 countries by high quality: The 10 countries with the lowest high quality articles per capita (in ascending order).
 -   Geographic regions by total coverage: A rank ordered list of geographic regions (in descending order) by total articles per capita.
 -   Geographic regions by high quality coverage: Rank ordered list of geographic regions (in descending order) by high quality articles per capita.
@@ -114,13 +114,14 @@ The results suggest that English Wikipedia, as a data source, is inherently bias
 
 **Can you think of a realistic data science research situation where using these data (to train a model, perform a hypothesis-driven research, or make business decisions) might create biased or misleading results, due to the inherent gaps and limitations of the data?**
 
-In terms of real-world data science applications, using this dataset to train a model could lead to biased or misleading outcomes. For instance, NLP tools trained on biased data, like Wikipedia content, could amplify cultural and demographic biases. These limitations highlight the importance of supplementing datasets with diverse samples or retraining models to ensure more representative outcomes.
-
-In realistic data science research, using biased datasets like these to train models or conduct hypothesis-driven research can lead to misleading results. For instance, content moderation or NLP models that rely on internet-sourced data might exhibit the same biases. The example of GPT-3 generating biased content against particular religions, such as Islam, highlights the dangers of training models on datasets that reflect cultural or ideological biases. As the article "Is GPT-3 Islamophobic?" demonstrates, biases in data can lead to harmful outcomes, especially in tools with large-scale deployments.
+Using this dataset to train a model could lead to biased or misleading results in real-world applications. For example, NLP tools trained on biased data like Wikipedia may amplify cultural and demographic biases. Models for content moderation or similar tasks may reflect the same biases found in internet-sourced data. The case of GPT-3 generating biased content against certain religions, like Islam, underscores the risks of training models on data with inherent cultural or ideological biases, which can have harmful outcomes, especially at scale.
 
 By reflecting on these biases and understanding how they influence data-driven decisions, it becomes clear that qualitative considerations are just as important as quantitative ones. Both must be carefully balanced to produce meaningful, accurate, and fair results in data science research.
 
 # Important considerations
 
-You should be a little careful with the data. Crawling Wikipedia categories to identify relevant page subsets can result in misleading and/or duplicate category labels. Naturally, the data crawl attempted to resolve these, but not all may have been caught.
+In my analysis, I manually searched to determine if some individuals in our dataset were incorrectly identified as politicians. During this search, I found several notable figures, including Mohammad Khan, an Afghan athlete; Karen Sargsyan, an Armenian sociologist; Julius Lippert, an Austrian historian; and Rick James, an actor from Antigua and Barbuda. Although they come from diverse professions, each had engaged in political activities at some point. Given their political involvement, I decided to include them in my dataset for analysis.
+
+One should be a little careful with the data. Crawling Wikipedia categories to identify relevant page subsets can result in misleading and/or duplicate category labels. Naturally, the data crawl attempted to resolve these, but not all may have been caught.
+
 As well, Wikipedia categories are folksonomic, meaning there is very little control over how they are applied to pages. This means that the set of pages is very likely some kind of subset, and may have pages that are not actually about individual politicians. You should look for any data inconsistencies and document how you handle inconsistencies that you find.
